@@ -365,8 +365,13 @@
 3. Hospitals
 4. Shopping complexes
 
-For each category, return only the 3 closest places (12 results total max), sorted by distance from nearest to farthest.  
-Include: Name, Type (Transit station, Restaurant, Hospital, Shopping complex), Address, Rating (out of 5), Distance (approximate from given coordinates), and a short Description.  
+Determine the search radius dynamically:
+- If the coordinates are in a large, densely populated city, keep the radius very small (within 1–2 km) so only the closest locations are included.
+- If the coordinates are in a rural area, village, or low population area, expand the radius up to 15–25 km and include the nearest towns or cities if necessary.
+
+For each category, return only the 3 closest places (max 12 total), sorted by distance from nearest to farthest.
+
+Include: Name, Type (Transit station, Restaurant, Hospital, Shopping complex), Address, Rating (out of 5), Distance (approximate from given coordinates), and a short Description.
 
 Format your response strictly as a valid JSON array with objects having these exact keys: "name", "type", "address", "rating", "distance", "description".
 
@@ -390,6 +395,7 @@ Example:
         maxOutputTokens: 2048
     }
 };
+
 
 
                 // Make API request
